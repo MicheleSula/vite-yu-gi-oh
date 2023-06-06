@@ -39,17 +39,19 @@ export default (await import('vue')).defineComponent({
 </script>
 
 <template>
-  <header>
-    <h1 id="page-title">Yu-GI-OH Deck Builder</h1>
-  </header>
+  <Loader v-if="isLoading" />
+  <div v-else>
+    <header>
+      <h1 id="page-title">Yu-GI-OH Deck Builder</h1>
+    </header>
 
-  <main>
-    <CardSelector @archetype-selected="selectedArchetype = $event"></CardSelector>
-    <div id="cards-container" class="container">
-      <Loader v-if="isLoading" />
-      <CardList v-else :selectedArchetype="selectedArchetype" />
-    </div>
-  </main>
+    <main>
+      <CardSelector @archetype-selected="selectedArchetype = $event"></CardSelector>
+      <div id="cards-container" class="container">
+        <CardList :selectedArchetype="selectedArchetype" />
+      </div>
+    </main>
+  </div>
 </template>
 
 <style lang="scss">
@@ -64,6 +66,8 @@ header {
 
   #page-title {
     color: white;
+    font-size: 50px;
+    font-weight: bold;
   }
 }
 

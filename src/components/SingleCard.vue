@@ -31,28 +31,37 @@ export default (await import('vue')).defineComponent({
 </script>
 
 <template>
-    <div>
-        <!-- Nome carta -->
-        <h2>{{ details.name }}</h2>
-        <!-- Immagine carta -->
-        <img v-if="isVisible" :src="details.card_images[0].image_url">
+    <div id="card">
+        <div>
+            <!-- Nome carta -->
+            <h2>{{ details.name }}</h2>
+            <!-- Immagine carta -->
+            <img v-if="isVisible" :src="details.card_images[0].image_url">
+        </div>
     </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 #cards-container {
     height: calc(100vh - 150px);
     background-color: olive;
 }
 
 #card {
-    height: 200px;
-    width: 150px;
-}
+    margin-right: 20px;
+    margin-bottom: 20px;
+    background-color: antiquewhite;
 
-img {
-    width: 200px;
-    height: 400px;
+    h2 {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    img {
+        width: 300px;
+        height: 500px;
+    }
 }
 </style>
   
