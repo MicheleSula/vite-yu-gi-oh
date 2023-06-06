@@ -16,6 +16,7 @@ export default (await import('vue')).defineComponent({
       store,
       isLoading: false,
       selectedArchetype: null,
+      spellCards: null,
     }
   },
   methods: {
@@ -46,9 +47,10 @@ export default (await import('vue')).defineComponent({
     </header>
 
     <main>
-      <CardSelector @archetype-selected="selectedArchetype = $event"></CardSelector>
+      <CardSelector @archetype-selected="selectedArchetype = $event" @spell-selected="spellCards = $event">
+      </CardSelector>
       <div id="cards-container" class="container">
-        <CardList :selectedArchetype="selectedArchetype" />
+        <CardList :selectedArchetype="selectedArchetype" :spell-cards="spellCards" />
       </div>
     </main>
   </div>

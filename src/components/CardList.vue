@@ -7,7 +7,8 @@ export default (await import('vue')).defineComponent({
     components: {
         SingleCard
     },
-    props: ['selectedArchetype'],
+    props: ['selectedArchetype',
+        'spellCards'],
     data() {
         return {
             store,
@@ -15,11 +16,14 @@ export default (await import('vue')).defineComponent({
     },
     computed: {
         filteredCards() {
+            let cards = this.store.CardList;
             if (this.selectedArchetype) {
-                return this.store.CardList.filter(card => card.archetype === this.selectedArchetype);
-            } else {
-                return this.store.CardList;
+                cards = cards.filter(card => card.archetype === this.selectedArchetype);
             }
+            if (this.spellCards) {
+                cards = cards.filter(card => card.type === 'Spell Card');
+            }
+            return cards;
         }
     }
 })
