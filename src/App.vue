@@ -15,8 +15,6 @@ export default (await import('vue')).defineComponent({
     return {
       store,
       isLoading: false,
-      selectedArchetype: null,
-      spellCards: null,
     }
   },
   methods: {

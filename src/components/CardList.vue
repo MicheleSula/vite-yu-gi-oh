@@ -7,23 +7,9 @@ export default (await import('vue')).defineComponent({
     components: {
         SingleCard
     },
-    props: ['selectedArchetype',
-        'spellCards'],
     data() {
         return {
-            store,
-        }
-    },
-    computed: {
-        filteredCards() {
-            let cards = this.store.CardList;
-            if (this.selectedArchetype) {
-                cards = cards.filter(card => card.archetype === this.selectedArchetype);
-            }
-            if (this.spellCards) {
-                cards = cards.filter(card => card.type === 'Spell Card');
-            }
-            return cards;
+            store
         }
     }
 })
@@ -31,7 +17,7 @@ export default (await import('vue')).defineComponent({
 
 <template>
     <section id="cards-container">
-        <div v-for="card in filteredCards" :key="card.id">
+        <div v-for="card in store.filteredCards" :key="card.id">
             <SingleCard :details="card"></SingleCard>
         </div>
     </section>

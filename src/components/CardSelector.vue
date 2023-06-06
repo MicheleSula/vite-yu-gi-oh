@@ -1,5 +1,5 @@
 <script>
-import { store } from '../store';
+import { store } from '../store.js';
 
 
 export default (await import('vue')).defineComponent({
@@ -7,28 +7,13 @@ export default (await import('vue')).defineComponent({
     data() {
         return {
             store,
-            selectedArchetype: null,
-            spellCards: null,
-        }
-    },
-    computed: {
-        filteredCards() {
-            let cards = this.store.CardList;
-            if (this.selectedArchetype) {
-                cards = cards.filter(card => card.archetype === this.selectedArchetype);
-            }
-            if (this.spellCards) {
-                cards = cards.filter(card => card.type === 'Spell Card');
-            }
-            console.log("Le carte selezionate sono:" + cards);
-            return cards;
         }
     }
 })
 </script>
 
 <template>
-    <select v-model="selectedArchetype" @change="$emit('archetype-selected', selectedArchetype)">
+    <select v-model="store.selectedArchetype" @change="$emit('archetype-selected', selectedArchetype)">
         <option value="">All archetypes</option>
         <option value="Alien">Alien</option>
         <option value="Myutant">Myutant</option>
@@ -38,8 +23,8 @@ export default (await import('vue')).defineComponent({
         <option value="Umi">Umi</option>
     </select>
     <label>
-        <input type="checkbox" v-model="spellCards" @change="$emit('spell-selected', spellCards)">Mostra solo carte
+        <input type="checkbox" v-model="store.spellCards" @change="$emit('spell-selected', spellCards)">Mostra solo carte
         magiche
     </label>
-    <div>Carte trovate: {{ filteredCards.length }}</div>
+    <div>Carte trovate: {{ store.filteredCards.length }}</div>
 </template>
