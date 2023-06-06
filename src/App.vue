@@ -45,10 +45,11 @@ export default (await import('vue')).defineComponent({
     </header>
 
     <main>
-      <CardSelector @archetype-selected="selectedArchetype = $event" @spell-selected="spellCards = $event">
+      <CardSelector @archetype-selected="selectedArchetype = $event" @spell-selected="spellCards = $event"
+        @trap-selected="trapCards = $event">
       </CardSelector>
       <div id="cards-container" class="container">
-        <CardList :selectedArchetype="selectedArchetype" :spell-cards="spellCards" />
+        <CardList :selectedArchetype="selectedArchetype" :spell-cards="spellCards" :trap-cards="trapCards" />
       </div>
     </main>
   </div>
