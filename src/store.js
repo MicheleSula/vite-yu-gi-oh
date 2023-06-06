@@ -1,4 +1,5 @@
 import { reactive, computed } from "vue";
+import axios from 'axios';
 
 export const store = reactive({
     apiURL: "https://db.ygoprodeck.com/api/v7/cardinfo.php",
@@ -6,9 +7,10 @@ export const store = reactive({
     selectedArchetype: null,
     spellCards: null,
     trapCards: null,
+    archetypes: [],
     filteredCards: computed(() => {
         let cards = store.CardList;
-        if (store.selectedArchetype) {
+        if (store.selectedArchetype && store.archetypes.includes(store.selectedArchetype)) {
             cards = cards.filter(card => card.archetype === store.selectedArchetype);
         }
         if (store.spellCards && store.trapCards) {
@@ -24,3 +26,14 @@ export const store = reactive({
         return cards;
     }),
 });
+
+async function fetchArchetypes() {
+    try {
+        const response = await axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php');
+        store.archetypes = response.data.map(archetype => archetype.archetype_name);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+fetchArchetypes();
