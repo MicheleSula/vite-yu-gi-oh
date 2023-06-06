@@ -28,4 +28,5 @@ export default (await import('vue')).defineComponent({
         <option value="Alien">Alien</option>
         <option value="Myutant">Myutant</option>
     </select>
+    <div>Carte trovate: {{ filteredCards.length }}</div>
 </template>
