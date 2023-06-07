@@ -48,14 +48,16 @@ export default (await import('vue')).defineComponent({
 }
 
 #card {
-    margin-right: 20px;
-    margin-bottom: 20px;
-    background-color: antiquewhite;
+    margin: 20px;
+    padding: 20px;
+    background-color: #212529;
+    border: 3px groove #6f7881;
 
     h2 {
         font-size: 20px;
         text-align: center;
         margin-bottom: 10px;
+        color: white;
     }
 
     img {

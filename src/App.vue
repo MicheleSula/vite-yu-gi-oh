@@ -44,10 +44,11 @@ export default (await import('vue')).defineComponent({
       <h1 id="page-title">Yu-GI-OH Deck Builder</h1>
     </header>
 
+    <CardSelector @archetype-selected="selectedArchetype = $event" @spell-selected="spellCards = $event"
+      @trap-selected="trapCards = $event">
+    </CardSelector>
+
     <main>
-      <CardSelector @archetype-selected="selectedArchetype = $event" @spell-selected="spellCards = $event"
-        @trap-selected="trapCards = $event">
-      </CardSelector>
       <div id="cards-container" class="container">
         <CardList :selectedArchetype="selectedArchetype" :spell-cards="spellCards" :trap-cards="trapCards" />
       </div>
@@ -64,6 +65,7 @@ header {
   align-items: center;
   justify-content: center;
   background-color: #7d3e12 !important;
+  border-bottom: #b4642a 4px solid;
 
   #page-title {
     color: white;
@@ -73,13 +75,13 @@ header {
 }
 
 main {
-  height: calc(100vh - 100px);
-  background-color: beige;
+  height: calc(100vh - 180px);
 
   #cards-container {
     overflow: auto;
-    background-color: white;
+    background-color: rgb(165, 76, 76);
     margin: auto;
+    border: #7d3e12 2px ridge;
   }
 }
 </style>
