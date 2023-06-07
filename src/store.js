@@ -3,7 +3,6 @@ import axios from 'axios';
 
 export const store = reactive({
     apiURL: "https://db.ygoprodeck.com/api/v7/cardinfo.php",
-    CardList: [],
     archetypes: [],
     spellCards: null,
     trapCards: null,
@@ -22,7 +21,6 @@ export const store = reactive({
         else if (store.trapCards) {
             cards = cards.filter(card => card.type === 'Trap Card');
         }
-
         return cards;
     }),
 });
