@@ -4,10 +4,10 @@ import axios from 'axios';
 export const store = reactive({
     apiURL: "https://db.ygoprodeck.com/api/v7/cardinfo.php",
     CardList: [],
-    selectedArchetype: null,
+    archetypes: [],
     spellCards: null,
     trapCards: null,
-    archetypes: [],
+
     filteredCards: computed(() => {
         let cards = store.CardList;
         if (store.selectedArchetype && store.archetypes.includes(store.selectedArchetype)) {
